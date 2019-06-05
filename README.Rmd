@@ -1,0 +1,48 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit README.Rmd (this file) -->
+
+```{r setup, echo = FALSE, warning = FALSE}
+chooseCRANmirror(graphics = FALSE, ind = 1)
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# GCA
+An R package for genetic connectedness analysis using pedigree and genomic data. 
+
+## Installation
+GCA is currently available in Github, and can be installed with devtools package: 
+
+1. Install `devtools` package from CRAN. 
+```{r, warning = FALSE, message = FALSE, results = 'hide', eval = FALSE}
+install.packages("devtools")
+```
+
+2. Load the `devtools` package.
+```{r, warning = FALSE, results = 'hide', eval = FALSE}
+library(devtools)
+```
+
+3. Install `GCA` package from Github.
+```{r, warning = FALSE, results = 'hide', message = FALSE, eval = FALSE}
+install_github('HaipengU/GCA2', build_opts = c("--no-resave-data", "--no-manual"))
+```
+
+4. Load `GCA` package. 
+```{r, warning = FALSE, results = 'hide', eval = FALSE}
+library(GCA)
+```
+
+5. View `GCA` vignette.
+```{r, warning = FALSE, results = 'hide', eval = FALSE}
+vignette('GCA', package = 'GCA')
+```
+
+## Documentation
+
+[Vignette](https://haipengu.github.io/Rmd/Vignette.html)
