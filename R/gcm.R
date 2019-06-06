@@ -195,17 +195,21 @@ ved.cor <- function(statistic = statistic, NumofMU, Z = Z, Kinv = Kinv, lamda = 
     X2 <- X[, -c(1 : m1)]
     if(is.vector(X2)) {
       X2 <- as.matrix(X2)
-      PEV_mean <- Matprod(Matprod(Matprod(chol2inv(chol(Matprod(t(X1), X1))), Matprod(t(X1), X2)) *  
-                                    var_Bhat[(m1 + 1) : m, (m1 + 1) : m], Matprod(t(X2), X1)), chol2inv(chol(Matprod(t(X1), X1)))) + 
-        Matprod(Matprod(chol2inv(chol(Matprod(t(X1), X1))), Matprod(t(X1), X2)), matrix(var_Bhat[(m1 + 1) : m, 1 : m1], ncol = m1)) + 
-        Matprod(Matprod(matrix(var_Bhat[1 : m1, (m1 + 1) : m], nrow = m1), Matprod(t(X2), X1)), chol2inv(chol(Matprod(t(X1), X1)))) + 
-        var_Bhat[1 : m1, 1 : m1] - sigma2e * chol2inv(chol(Matprod(t(X1), X1)))
+      tX1X1_inv <- chol2inv(chol(Matprod(t(X1), X1)))
+      tX1X2 <- Matprod(t(X1), X2)
+      tX2X1 <- Matprod(t(X2), X1)
+      PEV_mean <- Matprod(Matprod(Matprod(tX1X1_inv, tX1X2) * var_Bhat[(m1 + 1) : m, (m1 + 1) : m], tX2X1), tX1X1_inv) + 
+        Matprod(Matprod(tX1X1_inv, tX1X2), matrix(var_Bhat[(m1 + 1) : m, 1 : m1], ncol = m1)) + 
+        Matprod(Matprod(matrix(var_Bhat[1 : m1, (m1 + 1) : m], nrow = m1), tX2X1), tX1X1_inv) + 
+        var_Bhat[1 : m1, 1 : m1] - sigma2e * tX1X1_inv
       } else {
-       PEV_mean <- Matprod(Matprod(Matprod(Matprod(chol2inv(chol(Matprod(t(X1), X1))), Matprod(t(X1), X2)), 
-                                        var_Bhat[(m1 + 1) : m, (m1 + 1) : m]), Matprod(t(X2), X1)), chol2inv(chol(Matprod(t(X1), X1)))) + 
-          Matprod(Matprod(chol2inv(chol(Matprod(t(X1), X1))), Matprod(t(X1), X2)), var_Bhat[(m1 + 1) : m, 1 : m1]) + 
-          Matprod(Matprod(var_Bhat[1 : m1, (m1 + 1) : m], Matprod(t(X2), X1)), chol2inv(chol(Matprod(t(X1), X1)))) + 
-          var_Bhat[1 : m1, 1 : m1] - sigma2e * chol2inv(chol(Matprod(t(X1), X1)))
+        tX1X1_inv <- chol2inv(chol(Matprod(t(X1), X1)))
+        tX1X2 <- Matprod(t(X1), X2)
+        tX2X1 <- Matprod(t(X2), X1)
+       PEV_mean <- Matprod(Matprod(Matprod(Matprod(tX1X1_inv, tX1X2), var_Bhat[(m1 + 1) : m, (m1 + 1) : m]), tX2X1), tX1X1_inv) + 
+          Matprod(Matprod(tX1X1_inv, tX1X2), var_Bhat[(m1 + 1) : m, 1 : m1]) + 
+          Matprod(Matprod(var_Bhat[1 : m1, (m1 + 1) : m], tX2X1), tX1X1_inv) + 
+          var_Bhat[1 : m1, 1 : m1] - sigma2e * tX1X1_inv
       }
   }
   for (i in 1 : ncol(Summary.Matrix) - 1) {
@@ -255,11 +259,9 @@ cd.idAve <- function(PEVK = PEVK, Kmatrix = Kmatrix, Management_Unit = Managemen
 
 
 # Group Average CD
-cd.grpAve <- function(PEVK = PEVK, Kmatrix = Kmatrix, 
-                      Management_Unit = Management_Unit, 
+cd.grpAve <- function(PEVK = PEVK, Kmatrix = Kmatrix, Management_Unit = Management_Unit, 
                       MUScenario = MUScenario, NumofMU = NumofMU, sigma2a = sigma2a, diag = diag) {
-  CD.Pairwise.unit <- matrix(NA, ncol = length(Management_Unit), 
-                             nrow = length(Management_Unit))
+  CD.Pairwise.unit <- matrix(NA, ncol = length(Management_Unit), nrow = length(Management_Unit))
   colnames(CD.Pairwise.unit) <- rownames(CD.Pairwise.unit) <- Management_Unit
   for (i in 1 : (length(Management_Unit) - 1)) {
     for (j in (i + 1) : length(Management_Unit)) {
@@ -318,17 +320,21 @@ cd.cor <- function(statistic = statistic, NumofMU, Z = Z, Kinv = Kinv, Kmatrix =
     X2 <- X[, -c(1 : m1)]
     if(is.vector(X2)) {
       X2 <- as.matrix(X2)
-      PEV_mean <- Matprod(Matprod(Matprod(chol2inv(chol(Matprod(t(X1), X1))), Matprod(t(X1), X2)) *  
-                                    var_Bhat[(m1 + 1) : m, (m1 + 1) : m], Matprod(t(X2), X1)), chol2inv(chol(Matprod(t(X1), X1)))) + 
-        Matprod(Matprod(chol2inv(chol(Matprod(t(X1), X1))), Matprod(t(X1), X2)), matrix(var_Bhat[(m1 + 1) : m, 1 : m1], ncol = m1)) + 
-        Matprod(Matprod(matrix(var_Bhat[1 : m1, (m1 + 1) : m], nrow = m1), Matprod(t(X2), X1)), chol2inv(chol(Matprod(t(X1), X1)))) + 
-        var_Bhat[1 : m1, 1 : m1] - sigma2e * chol2inv(chol(Matprod(t(X1), X1)))
+      tX1X1_inv <- chol2inv(chol(Matprod(t(X1), X1)))
+      tX1X2 <- Matprod(t(X1), X2)
+      tX2X1 <- Matprod(t(X2), X1)
+      PEV_mean <- Matprod(Matprod(Matprod(tX1X1_inv, tX1X2) * var_Bhat[(m1 + 1) : m, (m1 + 1) : m], tX2X1), tX1X1_inv) + 
+        Matprod(Matprod(tX1X1_inv, tX1X2), matrix(var_Bhat[(m1 + 1) : m, 1 : m1], ncol = m1)) + 
+        Matprod(Matprod(matrix(var_Bhat[1 : m1, (m1 + 1) : m], nrow = m1), tX2X1), tX1X1_inv) + 
+        var_Bhat[1 : m1, 1 : m1] - sigma2e * tX1X1_inv
     } else {
-      PEV_mean <- Matprod(Matprod(Matprod(Matprod(chol2inv(chol(Matprod(t(X1), X1))), Matprod(t(X1), X2)), 
-                                          var_Bhat[(m1 + 1) : m, (m1 + 1) : m]), Matprod(t(X2), X1)), chol2inv(chol(Matprod(t(X1), X1)))) + 
-        Matprod(Matprod(chol2inv(chol(Matprod(t(X1), X1))), Matprod(t(X1), X2)), var_Bhat[(m1 + 1) : m, 1 : m1]) + 
-        Matprod(Matprod(var_Bhat[1 : m1, (m1 + 1) : m], Matprod(t(X2), X1)), chol2inv(chol(Matprod(t(X1), X1)))) + 
-        var_Bhat[1 : m1, 1 : m1] - sigma2e * chol2inv(chol(Matprod(t(X1), X1)))
+      tX1X1_inv <- chol2inv(chol(Matprod(t(X1), X1)))
+      tX1X2 <- Matprod(t(X1), X2)
+      tX2X1 <- Matprod(t(X2), X1)
+      PEV_mean <- Matprod(Matprod(Matprod(Matprod(tX1X1_inv, tX1X2), var_Bhat[(m1 + 1) : m, (m1 + 1) : m]), tX2X1), tX1X1_inv) + 
+        Matprod(Matprod(tX1X1_inv, tX1X2), var_Bhat[(m1 + 1) : m, 1 : m1]) + 
+        Matprod(Matprod(var_Bhat[1 : m1, (m1 + 1) : m], tX2X1), tX1X1_inv) + 
+        var_Bhat[1 : m1, 1 : m1] - sigma2e * tX1X1_inv
     }
   }
   for (i in 1 : ncol(Summary.Matrix) - 1) {
@@ -422,17 +428,21 @@ r.cor <- function(statistic = statistic, NumofMU, Z = Z, Kinv = Kinv, lamda = la
     X2 <- X[, -c(1 : m1)]
     if(is.vector(X2)) {
       X2 <- as.matrix(X2)
-      PEV_mean <- Matprod(Matprod(Matprod(chol2inv(chol(Matprod(t(X1), X1))), Matprod(t(X1), X2)) *  
-                                    var_Bhat[(m1 + 1) : m, (m1 + 1) : m], Matprod(t(X2), X1)), chol2inv(chol(Matprod(t(X1), X1)))) + 
-        Matprod(Matprod(chol2inv(chol(Matprod(t(X1), X1))), Matprod(t(X1), X2)), matrix(var_Bhat[(m1 + 1) : m, 1 : m1], ncol = m1)) + 
-        Matprod(Matprod(matrix(var_Bhat[1 : m1, (m1 + 1) : m], nrow = m1), Matprod(t(X2), X1)), chol2inv(chol(Matprod(t(X1), X1)))) + 
-        var_Bhat[1 : m1, 1 : m1] - sigma2e * chol2inv(chol(Matprod(t(X1), X1)))
+      tX1X1_inv <- chol2inv(chol(Matprod(t(X1), X1)))
+      tX1X2 <- Matprod(t(X1), X2)
+      tX2X1 <- Matprod(t(X2), X1)
+      PEV_mean <- Matprod(Matprod(Matprod(tX1X1_inv, tX1X2) * var_Bhat[(m1 + 1) : m, (m1 + 1) : m], tX2X1), tX1X1_inv) + 
+        Matprod(Matprod(tX1X1_inv, tX1X2), matrix(var_Bhat[(m1 + 1) : m, 1 : m1], ncol = m1)) + 
+        Matprod(Matprod(matrix(var_Bhat[1 : m1, (m1 + 1) : m], nrow = m1), tX2X1), tX1X1_inv) + 
+        var_Bhat[1 : m1, 1 : m1] - sigma2e * tX1X1_inv
     } else {
-      PEV_mean <- Matprod(Matprod(Matprod(Matprod(chol2inv(chol(Matprod(t(X1), X1))), Matprod(t(X1), X2)), 
-                                          var_Bhat[(m1 + 1) : m, (m1 + 1) : m]), Matprod(t(X2), X1)), chol2inv(chol(Matprod(t(X1), X1)))) + 
-        Matprod(Matprod(chol2inv(chol(Matprod(t(X1), X1))), Matprod(t(X1), X2)), var_Bhat[(m1 + 1) : m, 1 : m1]) + 
-        Matprod(Matprod(var_Bhat[1 : m1, (m1 + 1) : m], Matprod(t(X2), X1)), chol2inv(chol(Matprod(t(X1), X1)))) + 
-        var_Bhat[1 : m1, 1 : m1] - sigma2e * chol2inv(chol(Matprod(t(X1), X1)))
+      tX1X1_inv <- chol2inv(chol(Matprod(t(X1), X1)))
+      tX1X2 <- Matprod(t(X1), X2)
+      tX2X1 <- Matprod(t(X2), X1)
+      PEV_mean <- Matprod(Matprod(Matprod(Matprod(tX1X1_inv, tX1X2), var_Bhat[(m1 + 1) : m, (m1 + 1) : m]), tX2X1), tX1X1_inv) + 
+        Matprod(Matprod(tX1X1_inv, tX1X2), var_Bhat[(m1 + 1) : m, 1 : m1]) + 
+        Matprod(Matprod(var_Bhat[1 : m1, (m1 + 1) : m], tX2X1), tX1X1_inv) + 
+        var_Bhat[1 : m1, 1 : m1] - sigma2e * tX1X1_inv
     }
   }
   if (NumofMU == 'Pairwise') {
