@@ -22,6 +22,9 @@
 #'   \item varcomp(): Estimates of variance components using eigenvalues and eigenvectors. 
 #' }
 #'
+#' @useDynLib GCA, .registration = TRUE
+#' @importFrom Rcpp sourceCpp
+#' 
 #' @author Haipeng Yu and Gota Morota 
 #' 
 #' Maintainer: Haipeng Yu \email{haipengyu@@vt.edu}
