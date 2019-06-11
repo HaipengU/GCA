@@ -5,4 +5,4 @@ data(GCcattle)
 str(cattle.W)
 
 # Compute genomic relationship matrix
-G <- computeG(cattle.W, maf = 0.05, impute = 'mean', method = 'G1')
+G <- computeG(cattle.W, maf = 0.05, impute = 'rbinom', method = 'G1')

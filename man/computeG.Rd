@@ -4,19 +4,19 @@
 \alias{computeG}
 \title{Compute genomic relationship matrix}
 \usage{
-computeG(snpmatrix, maf, impute = "mean", method)
+computeG(snpmatrix, maf = 0.05, impute = "rbinom", method = "G1")
 }
 \arguments{
 \item{snpmatrix}{A marker matrix with a dimension of n by m and the elements are coded as 0, 1, 2 or NA, 
 where n and m indicate the total number of individuals and markers, accordingly.}
 
-\item{maf}{A minor allele frequency for quality control (e.g., 0.05).}
+\item{maf}{A minor allele frequency for quality control. The default maf is 0.05.}
 
 \item{impute}{Imputation method for missing markers if applicable. Two methods of 'mean' and 'rbinom' are available, 
 where the  'mean' imputes the missing marker using mean, and 'rbinom' imputes the missing marker by radom sampling from 
-a binomial distribution. The default method is 'mean'. This argument will be ignored the \code{snpmatrix} does not inlcude missing markers.}
+a binomial distribution. The default method is 'rbinom'. This argument will be ignored the \code{snpmatrix} does not inlcude missing markers.}
 
-\item{method}{A type of genomic relationship matrix, which includes 'G1' and 'G2' (VanRaden 2008).}
+\item{method}{A type of genomic relationship matrix, which includes 'G1' and 'G2' (VanRaden 2008). The default method is 'G1'.}
 }
 \value{
 A n by n additive genomic relationship matrix.
@@ -32,7 +32,7 @@ data(GCcattle)
 str(cattle.W)
 
 # Compute genomic relationship matrix
-G <- computeG(cattle.W, maf = 0.05, impute = 'mean', method = 'G1')
+G <- computeG(cattle.W, maf = 0.05, impute = 'rbinom', method = 'G1')
 }
 \references{
 \emph{VanRaden, P.M., 2008. Efficient methods to compute genomic predictions. Journal of dairy science, 91(11), pp.4414-4423.}
