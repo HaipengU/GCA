@@ -42,7 +42,7 @@ computeG <- function(snpmatrix, maf = 0.05, impute = 'rbinom', method = 'G1') {
     return(G1)
   } else if (method == 'G2'){
     W_cs <- scale(W, center = TRUE, scale = TRUE)
-    G2 <- tcrossprod(W_cs) / ncol(W_cs)
+    G2 <- Matprod(W_cs, t(W_cs)) / ncol(W_cs)
     cat('Genomic relationship matrix is computed. With', length(maf.index), 'snp removed when maf is', maf, sep = ' ')
     return(G2)
   }
