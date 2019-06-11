@@ -37,10 +37,10 @@ computeG <- function(snpmatrix, maf = 0.05, impute = 'rbinom', method = 'G1') {
   ifelse(length(maf.index) < 1, W <- snpmatrix, W <- snpmatrix[, -maf.index])
   if (method == 'G1') { 
     W_c <- scale(W, center = TRUE, scale = FALSE)
-    G1 <- Matprod(W_c, t(W_c)) / sum(2 * p * (1 - p))
+    G1 <- Matprodt(W_c, W_c) / sum(2 * p * (1 - p))
     cat('Genomic relationship matrix is computed. With', length(maf.index), 'snp removed when maf is', maf, sep = ' ')
     return(G1)
-  } else if (method == 'G2'){
+  } else if (method == 'G2') {
     W_cs <- scale(W, center = TRUE, scale = TRUE)
     G2 <- Matprod(W_cs, t(W_cs)) / ncol(W_cs)
     cat('Genomic relationship matrix is computed. With', length(maf.index), 'snp removed when maf is', maf, sep = ' ')
