@@ -20,8 +20,9 @@
 #' @example man/examples/varcomp.R
 #' 
 #' @export
+# The following code is modified from Dr. Gustavo de los Campos: https://github.com/gdlc 
 varcomp <- function(y, Evector, Evalue){
-  startVal <- log(c(0.2, 0.8))
+  startVal <- log(c(0.5, 0.5))
   var.opt <- optim(fn = log.Lik, y=y, Evector = Evector, Evalue = Evalue, par = startVal,
                    hessian=FALSE) 
   var.est <- list(Ve = exp(var.opt$par[1]) , Vu = exp(var.opt$par[2]))
