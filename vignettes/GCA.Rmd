@@ -285,14 +285,14 @@ EVD <- eigen(G) # eigendecomposition
 var <- varcomp(y = cattle.pheno$Phenotype, Evector = EVD$vectors, Evalue = EVD$values) # variance component
 var$Vu # variance of additive genetic effects
 var$Ve # variance of residual
-CD_IdAve <- gcm(Kmatrix = G, Xmatrix = X, sigma2a = var$Vu, sigma2e = var$Ve, 
+CD_IdAve <- gca(Kmatrix = G, Xmatrix = X, sigma2a = var$Vu, sigma2e = var$Ve, 
                 MUScenario = as.factor(cattle.pheno$Unit), statistic = 'CD_IdAve', NumofMU = 'Pairwise')
 CD_IdAve
 ```
 
 The above example showed the individual average CD, which is a function of PEV and returned a pairwise connectedness between all units. Alternative, it can return an overall connectedness which averages all pairwise CD by setting 'NumofMU' to 'Overall' as
 ```{r}
-CD_IdAve <- gcm(Kmatrix = G, Xmatrix = X, sigma2a = var$Vu, sigma2e = var$Ve, 
+CD_IdAve <- gca(Kmatrix = G, Xmatrix = X, sigma2a = var$Vu, sigma2e = var$Ve, 
                 MUScenario = as.factor(cattle.pheno$Unit), statistic = 'CD_IdAve', NumofMU = 'Overall')
 CD_IdAve
 ```
@@ -300,7 +300,7 @@ CD_IdAve
 #### Coefficient of determination of VED 
 We showed the CDVED1 in the following example, which is a function of VE. 
 ```{r}
-CDVED1 <- gcm(Kmatrix = G, Xmatrix = X, sigma2a = var$Vu, sigma2e = var$Ve, 
+CDVED1 <- gca(Kmatrix = G, Xmatrix = X, sigma2a = var$Vu, sigma2e = var$Ve, 
                 MUScenario = as.factor(cattle.pheno$Unit), statistic = 'CDVED1', NumofMU = 'Pairwise')
 CDVED1
 ```
@@ -309,12 +309,12 @@ The above example only considered one fixed effect of unit in the model. When mo
 ```{r}
 X2 <- model.matrix(~ -1 + factor(cattle.pheno$Unit)
                         + factor(cattle.pheno$Sex))
-CDVED2 <- gcm(Kmatrix = G, Uidx = 5, Xmatrix = X2, sigma2a = var$Vu, sigma2e = var$Ve,
+CDVED2 <- gca(Kmatrix = G, Uidx = 5, Xmatrix = X2, sigma2a = var$Vu, sigma2e = var$Ve,
               MUScenario = as.factor(cattle.pheno$Unit), statistic = 'CDVED2', NumofMU = 'Pairwise')
 CDVED2
 ```
 
-Notice that, we added additional argument of 'Uidx' in the above example, which is a interger to indicate the last column of unit effects in X matrix. More details can be checked with `?gcm`
+Notice that, we added additional argument of 'Uidx' in the above example, which is a interger to indicate the last column of unit effects in X matrix. More details can be checked with `?gca`
 
 ### Available connectedness metrics in GCA package.
 The following section lists all available metrics in GCA package, which can be called by setting the argument of 'statistic'.  

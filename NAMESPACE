@@ -2,7 +2,7 @@
 
 export(computeA)
 export(computeG)
-export(gcm)
+export(gca)
 export(varcomp)
 importFrom(Rcpp,sourceCpp)
 useDynLib(GCA, .registration = TRUE)
