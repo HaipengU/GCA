@@ -80,17 +80,17 @@ X1 <- model.matrix(~ -1 + factor(cattle.pheno$Unit))
 X2 <- model.matrix(~ -1 + factor(cattle.pheno$Unit) + factor(cattle.pheno$Sex))
 
 # Calculate CD_IdAve
-CD_IdAve <- gcm(Kmatrix = G, Xmatrix = X1, sigma2a = var$Vu, sigma2e = var$Ve, 
+CD_IdAve <- gca(Kmatrix = G, Xmatrix = X1, sigma2a = var$Vu, sigma2e = var$Ve, 
                 MUScenario = as.factor(cattle.pheno$Unit), statistic = 'CD_IdAve', 
                 NumofMU = 'Overall')
 
 # Calculate CDVED1
-CDVED1 <- gcm(Kmatrix = G, Xmatrix = X1, sigma2a = var$Vu, sigma2e = var$Ve, 
+CDVED1 <- gca(Kmatrix = G, Xmatrix = X1, sigma2a = var$Vu, sigma2e = var$Ve, 
               MUScenario = as.factor(cattle.pheno$Unit), statistic = 'CDVED1',
               NumofMU = 'Pairwise', diag = TRUE)
 
 # Calculate CDVED2
-CDVED2 <- gcm(Kmatrix = G, Xmatrix = X2, sigma2a = var$Vu, sigma2e = var$Ve,
+CDVED2 <- gca(Kmatrix = G, Xmatrix = X2, sigma2a = var$Vu, sigma2e = var$Ve,
               MUScenario = as.factor(cattle.pheno$Unit), statistic = 'CDVED2', 
               NumofMU = 'Pairwise', Uidx = 5, diag = TRUE)
 
