@@ -43,14 +43,6 @@ install_github('HaipengU/GCA')
 library(GCA)
 ```
 
-5.  View `GCA` vignette.
-
-<!-- end list -->
-
-``` r
-vignette('GCA', package = 'GCA')
-```
-
 ## Documentation
 
 [Vignette](https://haipengu.github.io/Rmd/Vignette.html)
