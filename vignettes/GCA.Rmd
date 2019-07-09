@@ -142,7 +142,7 @@ The third summary method is PEVD of contrast between a pair of units
 \end{align*} 
 where $\mathbf{x}$ is a contrast vector involving $\frac{1}{n_{i'}}$, $\frac{1}{n_{j'}}$ and $0$ corresponding to individuals belonging to $i′$th, $j′$th, and the remaining units. The sum of elements in x equals to zero. 
 
-#### Coefficient of Determination 
+### Coefficient of Determination 
 A CD metric measures the precision of genetic values and can be interpreted as the square of the correlation between the predicted and the true difference in the genetic values or the ratio between posterior and prior variances of genetic values $\mathbf{u}$ [@laloe1993]. Notable difference of CD from PEVD is that it penalizes connectedness measurements when across management units include individuals that are too genetically similar [@yu2017]. A pairwise CD between individuals $i$ and $j$ is given as 
 \begin{align*}
 \text{CD}_{ij} &= \frac{\text{Var}(\mathbf{\hat{u}})}{\text{Var}(\mathbf{u})}\\
@@ -178,7 +178,7 @@ A contrast notation of CD between any pair of management units is showed as [@la
 &= 1- \frac{\text{PEVD(x)}}{ \mathbf{x}' \mathbf{K} \mathbf{x} \cdot \sigma^2_u}.
 \end{align*}
 
-#### Prediction Error Correlation 
+### Prediction Error Correlation 
 Prediction error correlation, known as pairwise r statistic, is computed with the elements of the PEV matrix and the prediction error correlation between individuals $i$ and $j$ is defined as [@lewis1999]
 \begin{align*}
 \text{r}_{ij} = \frac{\text{PEC}(\widehat{u_i}, \widehat{u_j})}{\sqrt{\text{PEV}(\widehat{u_i}) \cdot \text{PEV}(\widehat{u_j})}}.
@@ -198,14 +198,13 @@ Group average r, known as flock connectedness, is computed from the ratio of PEV
 &= \frac{ \sum \text{PEC}_{i' j'} }{   \sqrt{  \sum \text{PEV}_{i' i'} \cdot  \sum \text{PEV}_{j' j'} }   }. 
 \end{align*}
 
-
 - **Contrast r** 
 The contrast format of r is defined as  
 \begin{align*}
 \text{r}(\mathbf{x}) &= \mathbf{x}' \mathbf{rx}.  
 \end{align*}
 
-#### Variance of differences in unit effects (VED)
+### Variance of differences in unit effects (VED)
 The metric of VED is a function of VE, which can be used for connectedness measurement. Differ from PEV-derived metrics which includes two steps computation at the individual level and unit level, the VE-derived metrics using a single-step procedure to calculate unit connectedness directly. 
 Moreover, the VE-derived metrics are expected to create less computation requirement according to the number of fixed effects are oftentimes smaller than the number of observations [@holmes2017]. In general, the VE-derived metrics can be classified based on the number of fixed effects to be corrected, which includes no correction (0), correction for one fixed effect (1), and correction for two or more fixed effects (2) [@holmes2017]. 
 
@@ -228,7 +227,7 @@ Following the equation of VED0, additional fixed effects other than unit effect 
 \text{VED2}_{i'j'} &= \text{VE2}_{i'i'} + \text{VE2}_{j'j'} -2\text{VE2}_{i'j'}.
 \end{align*}
 
-#### Coefficient of Determination of VED
+### Coefficient of Determination of VED
 - **CDVED0**
 The CDVED0 statistic can be considered as a group average CD calculating with VE0. A pairwise CDVED0 between two units i′ and j′ is given by 
 \begin{align*}
@@ -247,7 +246,7 @@ The CDVED2 statistic which accounts for the fixed effects other than unit effect
 \text{CDVED2}_{i'j'} &= 1 - \frac{\text{VE2}_{i'i'} + \text{VE2}_{j'j'} - 2\text{VE2}_{i'j'}}{\sigma^2_u \cdot (\overline{\mathbf{K}}_{i'i'} + \overline{\mathbf{K}}_{j'j'} - 2\overline{\mathbf{K}}_{i'j'})}.
 \end{align*}
 
-#### Connectedness Rating (CR)
+### Connectedness Rating (CR)
 - **CR0** The CR statistic, a group average r alike connectedness, is originally proposed by [@mathur2002] which replaced PEV_Meam with VE0 in the equation of group average r. The pairwise CR0 between two units $i'$ and $j'$ is defined as 
 \begin{align*}
 \text{CR0}_{i'j'} &=
