@@ -508,6 +508,11 @@ r.cor <- function(statistic = statistic, NumofMU, Z = Z, Kinv = Kinv, lamda = la
         var_Bhat[1 : m1, 1 : m1] - sigma2e * tX1X1_inv
     }
   }
+  for (i in 1 : ncol(Summary.Matrix) - 1) {
+    for (j in (i + 1) : ncol(Summary.Matrix)) {
+      Summary.Matrix[i, j] <- Summary.Matrix[j, i] <- PEV_mean[i, j] / sqrt(PEV_mean[i, i] * PEV_mean[j, j])
+    }
+  }
   if (NumofMU == 'Pairwise') {
     return(Summary.Matrix)
   } else if (NumofMU == 'Overall') {

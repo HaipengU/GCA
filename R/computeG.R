@@ -39,17 +39,15 @@ computeG <- function(snpmatrix, maf = 0.05, impute = 'rbinom', method = 'G1') {
     W_c <- scale(W, center = TRUE, scale = FALSE)
     G1 <- tcrossprod(W_c) / sum(2 * p * (1 - p))
     diag(G1) <- diag(G1) + 0.0001 
-    cat('Genomic relationship matrix has been computed. In total,',
-        length(maf.index), 'SNPs have been removed(MAF = ', maf, ').', 
-        sep = c(' ', ' ', '', ''))
+    cat('Genomic relationship matrix has been computed. Number of SNPs removed:',
+        length(maf.index), sep = c(' '))
     return(G1)
   } else if (method == 'G2') {
     W_cs <- scale(W, center = TRUE, scale = TRUE)
     G2 <- tcrossprod(W_cs) / ncol(W_cs)
     diag(G2) <- diag(G2) + 0.0001
-    cat('Genomic relationship matrix has been computed. In total,',
-        length(maf.index), 'SNPs have been removed(MAF = ', maf, ').', 
-        sep = c(' ', ' ', '', ''))
+    cat('Genomic relationship matrix has been computed. Number of SNPs removed:',
+        length(maf.index), sep = c(' '))
     return(G2)
   }
 }
