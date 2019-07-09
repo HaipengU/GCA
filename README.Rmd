@@ -30,7 +30,7 @@ library(devtools)
 
 3. Install `GCA` package from Github.
 ```{r, warning = FALSE, results = 'hide', message = FALSE, eval = FALSE}
-install_github('HaipengU/GCA', build_opts = c("--no-resave-data", "--no-manual"))
+install_github('HaipengU/GCA')
 ```
 
 4. Load `GCA` package. 

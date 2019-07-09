@@ -27,13 +27,12 @@ install.packages("devtools")
 library(devtools)
 ```
 
-3.  Install `GCA` package from
-Github.
+3.  Install `GCA` package from Github.
 
 <!-- end list -->
 
 ``` r
-install_github('HaipengU/GCA', build_opts = c("--no-resave-data", "--no-manual"))
+install_github('HaipengU/GCA')
 ```
 
 4.  Load `GCA` package.

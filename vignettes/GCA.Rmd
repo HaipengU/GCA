@@ -143,7 +143,7 @@ The third summary method is PEVD of contrast between a pair of units
 where $\mathbf{x}$ is a contrast vector involving $\frac{1}{n_{i'}}$, $\frac{1}{n_{j'}}$ and $0$ corresponding to individuals belonging to $i′$th, $j′$th, and the remaining units. The sum of elements in x equals to zero. 
 
 #### Coefficient of Determination 
-A CD metric measures the precision of genetic values and can be interpreted as the square of the correlation between the predicted and the true difference in the genetic values or the ratio between posterior and prior variances of genetic values $\mathbf{u}$ [@laloe1993]. Notable difference of CD from PEVD is that it penalizes connectedness measurements when across management units include individuals that are too genetically similar [@yu2017;@yu2018]. A pairwise CD between individuals $i$ and $j$ is given as 
+A CD metric measures the precision of genetic values and can be interpreted as the square of the correlation between the predicted and the true difference in the genetic values or the ratio between posterior and prior variances of genetic values $\mathbf{u}$ [@laloe1993]. Notable difference of CD from PEVD is that it penalizes connectedness measurements when across management units include individuals that are too genetically similar [@yu2017]. A pairwise CD between individuals $i$ and $j$ is given as 
 \begin{align*}
 \text{CD}_{ij} &= \frac{\text{Var}(\mathbf{\hat{u}})}{\text{Var}(\mathbf{u})}\\
 &= \frac{\text{Var}(\mathbf{u}) - \text{Var}(\mathbf{u}|\hat{\mathbf{u}})}{\text{Var}(\mathbf{u})} \\
@@ -346,7 +346,7 @@ CR2
 ```
 
 ### Available connectedness metrics in GCA package.
-The following section lists all available metrics in GCA package, which can be called by setting the argument of 'statistic'.  
+The following section lists all available metrics in GCA package, which can be called by setting the argument of `statistic`.  
 
 - PEVD_IdAve : Individual average PEVD, the optional argument of 'scale' is available. 
 - PEVD_GrpAve : Groupd average PEVD, the optional arguments of 'scale' and 'diag' are available.
