@@ -22,7 +22,7 @@ Genetic connectedness quantify the extent of linkage between individuals across 
 
 
 ## Connectedness Statistics
-The connectedness statistics implemented in this R package can be classified into two core functions: prediction error variance (PEV) and variance of unit effect estimates (VE). The PEV-derived metrics include prediction error variance of differences (PEVD), coefficient of determination (CD), and prediction error correlation (r). These PEV-derived metrics can be summarized at the unit level as the average PEV of all pairwise differences between individuals across units, average PEV within and across units, or using a contrast vector. VE-derived metrics include variance of differences in management unit effects (VED), coefficient of determination of VED (CDVED), and connectedness rating (CR). Three correction factors accounting for the number of fixed effects can be applied for each VE-derived metric. These include no correction (0), correcting for one fixed effect (1), and correcting for two or more fixed effects (2). The R code is integrated with C++ to improve computational speed using the Rcpp package [@rcpp]. We expect this R package will provide a comprehensive and effective tool for genetic connectedness analysis and whole-genome prediction. A comprehensive list of all connectedness statistics implemented in this R package can be summarized as following. The details of these connectedness statistics can be found in the [paper](https://www.biorxiv.org/content/10.1101/696419v1).
+The connectedness statistics implemented in this R package can be classified into two core functions: prediction error variance (PEV) and variance of unit effect estimates (VE). The PEV-derived metrics include prediction error variance of differences (PEVD), coefficient of determination (CD), and prediction error correlation (r). These PEV-derived metrics can be summarized at the unit level as the average PEV of all pairwise differences between individuals across units, average PEV within and across units, or using a contrast vector. VE-derived metrics include variance of differences in management unit effects (VED), coefficient of determination of VED (CDVED), and connectedness rating (CR). Three correction factors accounting for the number of fixed effects can be applied for each VE-derived metric. These include no correction (0), correcting for one fixed effect (1), and correcting for two or more fixed effects (2). The R code is integrated with C++ to improve computational speed using the Rcpp package [@rcpp]. We expect this R package will provide a comprehensive and effective tool for genetic connectedness analysis and whole-genome prediction. A comprehensive list of all connectedness statistics implemented in this R package can be summarized as following. The details of these connectedness statistics can be found in the [paper](https://www.biorxiv.org/content/10.1101/696419v2).
 
 * Prediction error variance (PEV)
   - Prediction error variance of difference (PEVD)
@@ -66,11 +66,11 @@ The dataset `GCcattle` contains two objects `cattle.pheno` and `cattle.W`, which
 library(GCA)
 data(GCcattle)
 dim(cattle.pheno) # phenotypes + fixed effects
+dim(cattle.W) # marker matrix
 ```
 
 The heritability of simulated phenotype was set to 0.6 with $\sigma^2_a$ = 0.6 and $\sigma^2_e$ = 0.4.
 ```{r}
-dim(cattle.W) # marker matrix
 sigma2a <- 0.6 # additive genetic variance
 sigma2e <- 0.4 # residual variance
 ```
@@ -105,60 +105,70 @@ The following section lists all available connectedness statistics in the GCA pa
 - CR2 : Connectedness rating with the correction of unit effect and additional fixed effects. The additional argument of 'Uidx' is required. 
 
 ### Examples of connectedness measures across units
-Below we list all available connectedness statistics in the GCA package.
+Below we list some examples of connectedness statistics in the GCA package.
+
 #### PEV-derived metric: PEVD_IdAve (pairwise vs. overall)
-The `gca` function is the main engine in the GCA package. The following example illustrates the pairwise individual average PEVD between all units. Based on the results, units 1 and 10 are the most connected (PEVD_IdAve = ) and the least connected units are units 2 and 4 (PEVD_IdAve = ). The PEVD statistic ranges from 0 to 1, with the smaller value indicates more connectedness.
+The `gca` function is the main engine in the GCA package. The following example illustrates the pairwise individual average PEVD between all units. Based on the results, units 1 and 8 are the most connected (PEVD_IdAve = 0.2818) and the least connected units are units 4 and 6 (PEVD_IdAve = 0.3083). The PEVD statistic ranges from 0 to 1, with the smaller value indicates more connectedness.
 ```{r}
 PEVD_IdAve <- gca(Kmatrix = G, Xmatrix = X1, sigma2a = sigma2a, sigma2e = sigma2e, 
-                  MUScenario = as.factor(cattle.pheno$Unit), statistic = 'PEVD_IdAve', NumofMU = 'Pairwise')
-round(PEVD_IdAve, digits = 3)
+                  MUScenario = as.factor(cattle.pheno$Unit), statistic = 'PEVD_IdAve', 
+                  NumofMU = 'Pairwise')
+round(PEVD_IdAve, digits = 4)
 ```
 
 Alternatively, the `gca` function can return an overall connectedness, which averages all pairwise PEVD_IdAve between units by setting `NumofMU` to `'Overall'`.
 ```{r}
 PEVD_IdAve <- gca(Kmatrix = G, Xmatrix = X1, sigma2a = sigma2a, sigma2e = sigma2e, 
-                  MUScenario = as.factor(cattle.pheno$Unit), statistic = 'PEVD_IdAve', NumofMU = 'Overall')
+                  MUScenario = as.factor(cattle.pheno$Unit), statistic = 'PEVD_IdAve', 
+                  NumofMU = 'Overall')
 PEVD_IdAve
+
 ```
 
 Following the above example, the group average PEVD and contrast PEVD can be easily calculated by changing the argument `statistic` to PEVD_GrpAve and PEVD_contrast, respectively.
 
 #### PEV-derived metric: CD_IdAve
-The pairwise individual average CD statistic between units is shown in the following example. The most connectedness units was found between units 1 and 10 (CD_IdAve = 0.741). On the other hand, the least connected design was found between units 2 and 4. The larger CD statistics indicates the greater connectedness. 
+The pairwise individual average CD statistic between units is shown in the following example. The most connected units was found between units 1 and 8 (CD_IdAve = 0.8590). On the other hand, the least connected design was found between units 4 and 6 (CD_IdAve = 0.8455). The larger CD statistics indicates the greater connectedness. 
 ```{r}
 CD_IdAve <- gca(Kmatrix = G, Xmatrix = X1, sigma2a = sigma2a, sigma2e = sigma2e, 
-                MUScenario = as.factor(cattle.pheno$Unit), statistic = 'CD_IdAve', NumofMU = 'Pairwise')
-round(CD_IdAve, digits = 3)
+                MUScenario = as.factor(cattle.pheno$Unit), statistic = 'CD_IdAve', 
+                NumofMU = 'Pairwise')
+round(CD_IdAve, digits = 4)
 ```
 
 #### PEV-derived metric: CD_GrpAve
+A group average CD, a larger value indicates more connected, is computed in the following example. As the results showed, the most connected units are units 2 and 7 (CD_GrpAve = 0.8073), where units 1 and 6 (CD_GrpAve = 0.7615) are found to be least connected. 
 ```{r}
 CD_GrpAve <- gca(Kmatrix = G, Xmatrix = X1, sigma2a = sigma2a, sigma2e = sigma2e, 
                MUScenario = as.factor(cattle.pheno$Unit), statistic = 'CD_GrpAve', 
                NumofMU = 'Pairwise')
-round(CD_GrpAve, digits = 3)
+round(CD_GrpAve, digits = 4)
 ```
 
 #### VE-derived metric: VED0 
+The following example showed the VED0 statistic with a smaller value indicates most connected units. The most connected units are found between units 1 and 8 (VED0 = 0.0124), and units 4 and 6 (VED0 = 0.0445) showed least connected. 
 ```{r}
 VED0  <- gca(Kmatrix = G, Xmatrix = X1, sigma2a = sigma2a, sigma2e = sigma2e, 
              MUScenario = as.factor(cattle.pheno$Unit), statistic = 'VED0', 
              NumofMU = 'Pairwise')
-round(VED0, digits = 3)
+round(VED0, digits = 4)
 ```
-
-#### VE-derived metric: CDVED1 
+#### VE-derived metric: CDVED1
+A CDVED1 statistic which accounts for the number of observations in the unit is shown in the following example. The most connected units are found between units 2 and 7 (CDVED1 = 0.8073), where the least connected units are between units 1 and 6 (CDVED1 = 0.7615). The larger CDVED1 value is according to greater connectedness. 
 ```{r}
 CDVED1 <- gca(Kmatrix = G, Xmatrix = X1, sigma2a = sigma2a, sigma2e = sigma2e, 
-              MUScenario = as.factor(cattle.pheno$Unit), statistic = 'CDVED1', NumofMU = 'Pairwise')
-round(CDVED1, digits = 3)
+              MUScenario = as.factor(cattle.pheno$Unit), statistic = 'CDVED1', 
+              NumofMU = 'Pairwise')
+round(CDVED1, digits = 4)
 ```
 
 #### VE-derived metric: CDVED2 
+This example showed the calculation of CDVED2, where both the unit effects and sex are accounted for using correction factors. The larger CDVED2 value indicates greater connectedness. The most connected units are found between units 2 and 7 (CDVED2 = 0.8072), where the least connected units are between units 1 and 6 (CDVED2 = 0.7615). 
 ```{r}
 CDVED2  <- gca(Kmatrix = G, Xmatrix = X2, sigma2a = sigma2a, sigma2e = sigma2e, 
-           MUScenario = as.factor(cattle.pheno$Unit), statistic = 'CDVED2', NumofMU = 'Pairwise', Uidx = 8)
-round(CDVED2, digits = 3)
+           MUScenario = as.factor(cattle.pheno$Unit), statistic = 'CDVED2', 
+           NumofMU = 'Pairwise', Uidx = 8)
+round(CDVED2, digits = 4)
 ```
 
 ## Authors
