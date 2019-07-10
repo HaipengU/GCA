@@ -136,7 +136,7 @@ round(CD_IdAve, digits = 3)
 CD_GrpAve <- gca(Kmatrix = G, Xmatrix = X1, sigma2a = sigma2a, sigma2e = sigma2e, 
                MUScenario = as.factor(cattle.pheno$Unit), statistic = 'CD_GrpAve', 
                NumofMU = 'Pairwise')
-round(CD_GrpAve, digits = 4)
+round(CD_GrpAve, digits = 3)
 ```
 
 #### VE-derived metric: VED0 
@@ -158,7 +158,7 @@ round(CDVED1, digits = 3)
 ```{r}
 CDVED2  <- gca(Kmatrix = G, Xmatrix = X2, sigma2a = sigma2a, sigma2e = sigma2e, 
            MUScenario = as.factor(cattle.pheno$Unit), statistic = 'CDVED2', NumofMU = 'Pairwise', Uidx = 8)
-round(CDVED2, digits = 4)
+round(CDVED2, digits = 3)
 ```
 
 ## Authors
