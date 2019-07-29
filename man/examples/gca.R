@@ -4,14 +4,11 @@ data(GCcattle)
 # Compute genomic relationship matrix
 G <- computeG(cattle.W, maf = 0.05, impute = 'mean', method = 'G1')
 
-# Eigendecomposition of genomic relationship matrix
-EVD <- eigen(G)
-
-# Estimate variance component
-var <- varcomp(y = cattle.pheno$Phenotype, Evector = EVD$vectors, Evalue = EVD$values) 
+# The heritability of simulated phenotype was set to 0.6 with additive genetic variace (Vu) = 0.6 and residual variance (Ve) = 0.4
+var <- list(Vu = 0.6, Ve = 0.4) 
 
 # Design matrix of fixed effects
-## one unit effect
+## unit effect
 X1 <- model.matrix(~ -1 + factor(cattle.pheno$Unit))
 ## unit effect and sex effect
 X2 <- model.matrix(~ -1 + factor(cattle.pheno$Unit) + factor(cattle.pheno$Sex))
@@ -29,7 +26,7 @@ CDVED1 <- gca(Kmatrix = G, Xmatrix = X1, sigma2a = var$Vu, sigma2e = var$Ve,
 # Calculate CDVED2
 CDVED2 <- gca(Kmatrix = G, Xmatrix = X2, sigma2a = var$Vu, sigma2e = var$Ve,
               MUScenario = as.factor(cattle.pheno$Unit), statistic = 'CDVED2', 
-              NumofMU = 'Pairwise', Uidx = 5, diag = TRUE)
+              NumofMU = 'Pairwise', Uidx = 8, diag = TRUE)
 
 
 

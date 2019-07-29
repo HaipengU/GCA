@@ -21,12 +21,13 @@
 #' @export
 computeG <- function(snpmatrix, maf = 0.05, impute = 'rbinom', method = 'G1') {
   if(anyNA(snpmatrix)) {
-    for(j in 1 : ncol(snpmatrix)) {
+    nullid <- unname(which(apply(snpmatrix, 2, anyNA)))
+    p_temp <- (colMeans(snpmatrix, na.rm = T) / 2)
+    for(j in nullid) {
       if(impute == 'mean') {
-        snpmatrix[, j] <- ifelse(is.na(snpmatrix[, j]), mean(snpmatrix[, j], na.rm = TRUE), snpmatrix[, j])
+        snpmatrix[, j] <- ifelse(is.na(snpmatrix[, j]), 2 * p_temp[, j], snpmatrix[, j])
       } else if(impute == 'rbinom') {
         set.seed(007) # reproducible imputation
-        p_temp <- (colMeans(snpmatrix, na.rm = T) / 2)
         snpmatrix[, j] <- ifelse(is.na(snpmatrix[, j]), rbinom(1, 2, p_temp[j]), snpmatrix[, j])
       }
     }
