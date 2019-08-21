@@ -11,6 +11,7 @@
 #' @param method A type of genomic relationship matrix, which includes 'G1' and 'G2' (VanRaden 2008). The default method is 'G1'.  
 #' @return A n by n additive genomic relationship matrix. 
 #' 
+#' @import stats
 #' @author Haipeng Yu and Gota Morota 
 #' 
 #' Maintainer: Haipeng Yu \email{haipengyu@@vt.edu}

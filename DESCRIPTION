@@ -12,9 +12,5 @@ LazyData: true
 RoxygenNote: 6.1.1
 Suggests: prettydoc, knitr, rmarkdown
 VignetteBuilder: knitr, rmarkdown
-LinkingTo: 
-    Rcpp,
-    RcppEigen
-Imports: 
-    Rcpp,
-    RcppEigen
+Imports: Rcpp, stats
+LinkingTo: Rcpp, RcppEigen
