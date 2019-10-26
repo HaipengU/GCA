@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit README.Rmd (this file) -->
 
-# GCA <img src="man/figures/GCA.png" height="139" align="right"/>
+# GCA <img src="man/figures/GCA.png" height="200" align="right"/>
 
 ## Overview
 

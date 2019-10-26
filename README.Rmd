@@ -12,7 +12,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# GCA <img src="man/figures/GCA.png" height="139" align="right"/>
+# GCA <img src="man/figures/GCA.png" height="200" align="right"/>
 
 ## Overview 
 An R package for genetic connectedness analysis using pedigree and genomic data. 
