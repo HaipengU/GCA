@@ -1,7 +1,9 @@
 
 <!-- README.md is generated from README.Rmd. Please edit README.Rmd (this file) -->
 
-# GCA
+# GCA <img src="man/figures/GCA.png" height="139" align="right"/>
+
+## Overview
 
 An R package for genetic connectedness analysis using pedigree and
 genomic data.
@@ -46,3 +48,9 @@ library(GCA)
 ## Documentation
 
 [Vignette](https://haipengu.github.io/Rmd/Vignette.html)
+
+## Reference
+
+Yu H and Morota G. 2019. “GCA: An R Package for Genetic Connectedness
+Analysis Using Pedigree and Genomic Data.” bioRxiv.
+<https://doi.org/10.1101/696419>
