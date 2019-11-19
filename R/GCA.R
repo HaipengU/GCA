@@ -4,15 +4,17 @@
 #' An R package for genetic connectedness analysis across units using pedigree and genomic data.
 #' 
 #' @details 
-#' This package implements three connectedness metrics which are functions of prediction error variance (PEV) matrix,  
-#'  including prediction error variance of difference (PEVD), coefficient of determination (CD) and prediction error correlation (r), 
-#'  coupled with three summary methods for each statistic. For example, the PEVD across units is summarized as 1) average PEV of all 
-#'  pairwise differences between individuals across units; 2) average PEV within and across units; 3) using a contrast vector. 
-#'  Analogous summary methods will be also applied to CD and r statistics. Three additional metrics approximating connectedness using 
-#'  variance of estimates of unit effects (VE) are included, such as variance of estimates of units effects difference (VED), 
-#'  coefficient of determination of VED (CDVED), and connectedness rating (CR). Within each metric, three different methods are names 
-#'  according to the number of corrected factors (e.g., 0, 1 and 2) for fixed effects, such as VED0, VED1 and VED2. Similar corrected 
-#'  function is also applied for metrics of CDVED and CR. 
+#'The GCA package encompasses numerous connectedness statistics which could be labeled as two groups, 
+#'by reference to connectedness based on prediction error variance (PEV) and variance of unit effect estimates (VE).
+#'The PEV-derived metrics include prediction error variance of differences (PEVD), coefficient of determination (CD), 
+#'and prediction error correlation (r). These PEV-derived metrics can be summarized at the unit level as the average PEV 
+#'of all pairwise differences between individuals across units (IdAve), average PEV within and across units (GrpAve), 
+#'or using a contrast vector (Contrast). VE-derived metrics comprise variance of differences in management unit effects (VED), 
+#'coefficient of determination of VED (CDVED), and connectedness rating (CR). Three correction factors accounting for the number 
+#'of fixed effects can be applied for each VE-derived metric. These include non-correction (0), correction of unit effect (1), 
+#'and correction of two or more fixed effects (2). The core function of GCA is integrated with C++ to improve computational 
+#'efficiency using the Rcpp package (Eddelbuettel and François 2011). The details of these connectedness statistics can be found
+#'in Yu and Morota 2019.
 #' 
 #' @section Available functions in GCA package:
 #' \itemize{
@@ -28,7 +30,8 @@
 #' @author Haipeng Yu and Gota Morota 
 #' 
 #' Maintainer: Haipeng Yu \email{haipengyu@@vt.edu}
-#' 
+#' @references \emph{Eddelbuettel D, François R (2011). Rcpp: Seamless R and C++ Integration. Journal of Statistical Software, 40(8), 1–18.}
+#' @references \emph{Yu H and Morota G. 2019. GCA: An R Package for Genetic Connectedness Analysis Using Pedigree and Genomic Data.}
 #' 
 #'@keywords internal
 "_PACKAGE"

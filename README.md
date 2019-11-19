@@ -48,12 +48,18 @@ install_github('HaipengU/GCA')
 library(GCA)
 ```
 
+### Fail to load documentation (e.g., `?GCA`) after reinstalling GCA.
+
+``` r
+.rs.restartR() 
+```
+
 ## Documentation
 
-[Vignette](https://haipengu.github.io/Rmd/Vignette.html)
+[Vignette](https://haipengu.github.io/Rmd/GCA/Vignette.html)
 
 ## Reference
 
-Yu H and Morota G. 2019. “GCA: An R Package for Genetic Connectedness
-Analysis Using Pedigree and Genomic Data.” bioRxiv.
+Yu H and Morota G. 2019. GCA: An R Package for Genetic Connectedness
+Analysis Using Pedigree and Genomic Data. bioRxiv.
 <https://doi.org/10.1101/696419>

@@ -4,8 +4,18 @@
 \alias{gca}
 \title{Genetic connectedness analysis}
 \usage{
-gca(Kmatrix, Xmatrix, sigma2a, sigma2e, MUScenario, statistic, NumofMU,
-  Uidx = NULL, scale = TRUE, diag = TRUE)
+gca(
+  Kmatrix,
+  Xmatrix,
+  sigma2a,
+  sigma2e,
+  MUScenario,
+  statistic,
+  NumofMU,
+  Uidx = NULL,
+  scale = TRUE,
+  diag = TRUE
+)
 }
 \arguments{
 \item{Kmatrix}{A relationship matrix with a dimension of n by n, where n refers to the total number of individuals.}
