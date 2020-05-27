@@ -24,77 +24,78 @@ Genetic connectedness quantifies the extent of linkage between individuals acros
 ## Connectedness Statistics
 The connectedness statistics implemented in this R package can be classified into two core functions: prediction error variance (PEV) and variance of unit effect estimates (VE). The PEV-derived metrics include prediction error variance of differences (PEVD), coefficient of determination (CD), and prediction error correlation (r). These PEV-derived metrics can be summarized at the unit level as the average PEV within and across units (GrpAve), average PEV of all pairwise differences between individuals across units (IdAve), or using a contrast vector (Contrast). VE-derived metrics include variance of differences in management unit effects (VED), coefficient of determination of VED (CDVED), and connectedness rating (CR). Three correction factors accounting for the number of fixed effects can be applied for each VE-derived metric. These include no correction (0), correcting for one fixed effect (1), and correcting for two or more fixed effects (2). The R code is integrated with C++ to improve computational speed using the Rcpp package [@rcpp]. We expect this R package provides a comprehensive and effective tool for genetic connectedness analysis and whole-genome prediction. A comprehensive list of all connectedness statistics implemented in this R package can be summarized as following. The details of these connectedness statistics can be found in the [paper](https://www.biorxiv.org/content/10.1101/696419v2) [@Yu2019].
 
-```{r echo = FALSE, fig.cap = 'Figure 1: An overview of connectedness statistics implemented in the GCA R package.' }
-packrat::off()
-library(DiagrammeR)
-grViz("digraph flowchart {
-      # node definitions with substituted label text
-      # graph [overlap = true, fontsize = 12]
-      node [fontname = Helvetica, shape = box, fontsize = 12,
-            color = white, fillcolor = Tomato2, style = filled]
-      tab1;
-      node [fontname = Helvetica, shape = box, fontsize = 11, fixedsize = true, 
-            width = 0.6, height = 0.3, color = white, fillcolor = SeaGreen2, style = filled]
-      tab4;tab5;tab6;
-      node [fontname = Helvetica, shape = box, fontsize = 11, fixedsize = true, 
-            width = 0.6, height = 0.3, color = white, fillcolor = deepskyblue2, style = filled]
-      tab7;tab8;tab9;
-      node [fontname = Helvetica, shape = circle, fixedsize = true, fontsize = 8, 
-            width = 0.5, height = 0.3, color = white, fillcolor = SeaGreen1, style = filled]
-      tab10;tab11;tab12;
-      node [fontname = Helvetica, shape = circle, fixedsize = true, fontsize = 8, 
-            width = 0.5, height = 0.3, color = white, fillcolor = deepskyblue1, style = filled]
-      tab13;tab14;tab15;
-      node [fontname = Helvetica, shape = oval, fixedsize = false, 
-            fontsize = 12, color = white, fillcolor = SeaGreen3, style = filled]
-      tab2;
-      node [fontname = Helvetica, shape = oval, fixedsize = false, 
-            fontsize = 12, color = white, fillcolor = deepskyblue3, style = filled]
-      tab3;
-      tab1 [label = '@@1']
-      tab2 [label = '@@2']
-      tab3 [label = '@@3']
-      tab4 [label = '@@4']
-      tab5 [label = '@@5']
-      tab6 [label = '@@6']
-      tab7 [label = '@@7']
-      tab8 [label = '@@8']
-      tab9 [label = '@@9']
-      tab10 [label = '@@10']
-      tab11 [label = '@@11']
-      tab12 [label = '@@12']
-      tab13 [label = '@@13']
-      tab14 [label = '@@14']
-      tab15 [label = '@@15']
-      
-      # edge definitions with the node IDs
-      tab1 -> {tab2 tab3}[arrowsize = 0.3];
-      tab2 -> {tab4 tab5 tab6}[arrowsize = 0.3];
-      tab3 -> {tab7 tab8 tab9}[arrowsize = 0.3];
-      tab4 -> {tab10 tab11 tab12}[arrowsize = 0.2];
-      tab5 -> {tab10 tab11 tab12}[arrowsize = 0.2];
-      tab6 -> {tab10 tab11 tab12}[arrowsize = 0.2];
-      tab7 -> {tab13 tab14 tab15}[arrowsize = 0.2];
-      tab8 -> {tab13 tab14 tab15}[arrowsize = 0.2];
-      tab9 -> {tab13 tab14 tab15}[arrowsize = 0.2];
-      }
-      
-      [1]: 'Connectedness statistics'
-      [2]: 'PEV core function'
-      [3]: 'VE core function'
-      [4]: 'PEVD'
-      [5]: 'CD'
-      [6]: 'r'
-      [7]: 'VED'
-      [8]: 'CDVED'
-      [9]: 'CR'
-      [10]: 'IdAve'
-      [11]: 'GrpAve'
-      [12]: 'Contrast'
-      [13]: '0'
-      [14]: '1'
-      [15]: '2'
-      ")
+```{r echo = FALSE, fig.cap = 'Figure 1: An overview of connectedness statistics implemented in the GCA R package.', out.width = '90%' }
+knitr::include_graphics("GCstat.png")
+# 
+# library(DiagrammeR)
+# grViz("digraph flowchart {
+#       # node definitions with substituted label text
+#       # graph [overlap = true, fontsize = 12]
+#       node [fontname = Helvetica, shape = box, fontsize = 12,
+#             color = white, fillcolor = Tomato2, style = filled]
+#       tab1;
+#       node [fontname = Helvetica, shape = box, fontsize = 11, fixedsize = true, 
+#             width = 0.6, height = 0.3, color = white, fillcolor = SeaGreen2, style = filled]
+#       tab4;tab5;tab6;
+#       node [fontname = Helvetica, shape = box, fontsize = 11, fixedsize = true, 
+#             width = 0.6, height = 0.3, color = white, fillcolor = deepskyblue2, style = filled]
+#       tab7;tab8;tab9;
+#       node [fontname = Helvetica, shape = circle, fixedsize = true, fontsize = 8, 
+#             width = 0.5, height = 0.3, color = white, fillcolor = SeaGreen1, style = filled]
+#       tab10;tab11;tab12;
+#       node [fontname = Helvetica, shape = circle, fixedsize = true, fontsize = 8, 
+#             width = 0.5, height = 0.3, color = white, fillcolor = deepskyblue1, style = filled]
+#       tab13;tab14;tab15;
+#       node [fontname = Helvetica, shape = oval, fixedsize = false, 
+#             fontsize = 12, color = white, fillcolor = SeaGreen3, style = filled]
+#       tab2;
+#       node [fontname = Helvetica, shape = oval, fixedsize = false, 
+#             fontsize = 12, color = white, fillcolor = deepskyblue3, style = filled]
+#       tab3;
+#       tab1 [label = '@@1']
+#       tab2 [label = '@@2']
+#       tab3 [label = '@@3']
+#       tab4 [label = '@@4']
+#       tab5 [label = '@@5']
+#       tab6 [label = '@@6']
+#       tab7 [label = '@@7']
+#       tab8 [label = '@@8']
+#       tab9 [label = '@@9']
+#       tab10 [label = '@@10']
+#       tab11 [label = '@@11']
+#       tab12 [label = '@@12']
+#       tab13 [label = '@@13']
+#       tab14 [label = '@@14']
+#       tab15 [label = '@@15']
+#       
+#       # edge definitions with the node IDs
+#       tab1 -> {tab2 tab3}[arrowsize = 0.3];
+#       tab2 -> {tab4 tab5 tab6}[arrowsize = 0.3];
+#       tab3 -> {tab7 tab8 tab9}[arrowsize = 0.3];
+#       tab4 -> {tab10 tab11 tab12}[arrowsize = 0.2];
+#       tab5 -> {tab10 tab11 tab12}[arrowsize = 0.2];
+#       tab6 -> {tab10 tab11 tab12}[arrowsize = 0.2];
+#       tab7 -> {tab13 tab14 tab15}[arrowsize = 0.2];
+#       tab8 -> {tab13 tab14 tab15}[arrowsize = 0.2];
+#       tab9 -> {tab13 tab14 tab15}[arrowsize = 0.2];
+#       }
+#       
+#       [1]: 'Connectedness statistics'
+#       [2]: 'PEV core function'
+#       [3]: 'VE core function'
+#       [4]: 'PEVD'
+#       [5]: 'CD'
+#       [6]: 'r'
+#       [7]: 'VED'
+#       [8]: 'CDVED'
+#       [9]: 'CR'
+#       [10]: 'IdAve'
+#       [11]: 'GrpAve'
+#       [12]: 'Contrast'
+#       [13]: '0'
+#       [14]: '1'
+#       [15]: '2'
+#       ")
 ```
 
 ## Application of the GCA package
