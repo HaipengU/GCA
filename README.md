@@ -8,8 +8,8 @@ Status](https://travis-ci.org/HaipengU/GCA.svg?branch=master)](https://travis-ci
 
 ## Overview
 
-An R package for genetic connectedness analysis using pedigree and
-genomic data.
+This is the development version of the GCA R package. The stable version
+can be accessed [here](https://github.com/QGresources/GCA).
 
 ## Installation
 
