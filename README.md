@@ -56,7 +56,7 @@ library(GCA)
 
 ## Documentation
 
-[Vignette](https://haipengu.github.io/Rmd/GCA/Vignette.html)
+[Vignette](https://qgresources.github.io/GCA_Vignette/GCA.html)
 
 ## Reference
 

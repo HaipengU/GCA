@@ -108,6 +108,10 @@ install_github('HaipengU/GCA')
 
 ### Load all packages used in this vignette. 
 ```{r message = FALSE}
+install.packages('BGLR')
+install.packages('corrplot')
+install.packages('ggplot2')
+install.packages('gridExtra')
 library(BGLR)
 library(corrplot)
 library(GCA)
