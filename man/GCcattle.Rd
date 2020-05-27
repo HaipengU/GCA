@@ -4,16 +4,18 @@
 \name{GCcattle}
 \alias{GCcattle}
 \title{Cattle dataset}
-\format{\itemize{
+\format{
+\itemize{
   \item cattle.pheno: A matrix with a dimension of 2500 x 6, which includes one phenotype, two fixed covariates and pedigree information.
   \item catlle.W: A 2500 by 10,000 matrix, which contains marker information.
-}}
+}
+}
 \usage{
 data(GCcattle)
 }
 \description{
 The cattle dataset is simulated with QMSim software (Sargolzaei and Schenkel, 2009).   
-This dataset includes 2500 individuals across six generations (from founder to generation 5), 
+This dataset includes 2,500 individuals across six generations (from founder to generation 5), 
 each with 10,000 single nucleotide polymorphisms spread over 29 autosomes. Single phenotype with heritability of 0.6 was simulated.
 Two fixed covariates of sex and unit are available.
 }

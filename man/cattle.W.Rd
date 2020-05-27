@@ -5,7 +5,7 @@
 \alias{cattle.W}
 \title{Marker information of cattle dataset}
 \description{
-A 2500 by 10,000 matrix contains marker information.
+A 2,500 by 10,000 matrix contains marker information.
 }
 \author{
 Haipeng Yu and Gota Morota 

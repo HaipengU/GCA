@@ -9,11 +9,11 @@
 An R package for genetic connectedness analysis across units using pedigree and genomic data.
 }
 \details{
-The GCA package encompasses numerous connectedness statistics which could be labeled as two groups, 
+The GCA package encompasses numerous connectedness statistics, which could be labeled as two groups, 
 by reference to connectedness based on prediction error variance (PEV) and variance of unit effect estimates (VE).
 The PEV-derived metrics include prediction error variance of differences (PEVD), coefficient of determination (CD), 
-and prediction error correlation (r). These PEV-derived metrics can be summarized at the unit level as the average PEV 
-of all pairwise differences between individuals across units (IdAve), average PEV within and across units (GrpAve), 
+and prediction error correlation (r). These PEV-derived metrics can be summarized at the unit level as the average PEV within
+and across units (GrpAve), average PEV of all pairwise differences between individuals across units (IdAve), 
 or using a contrast vector (Contrast). VE-derived metrics comprise variance of differences in management unit effects (VED), 
 coefficient of determination of VED (CDVED), and connectedness rating (CR). Three correction factors accounting for the number 
 of fixed effects can be applied for each VE-derived metric. These include non-correction (0), correction of unit effect (1), 

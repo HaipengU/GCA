@@ -1,11 +1,11 @@
-#' Estimates of variance componets. 
+#' Variance component estimation 
 #'
 #' Maximum Likelihood estimation of variance components using the eigenvalues and eigenvectors, 
-#'   which are derived from the eigendecomposition of the relationship matrix. 
+#'   which are derived from the eigendecomposition of a relationship matrix. 
 #' 
-#' @param y A vector includes the phenotypes of n individuals.  
-#' @param Evector A matrix  (n x n) with columns according to eigenvectors from the eigendecomposition of the relationship matrix. 
-#' @param Evalue A vector which contains the eigenvalues of n individuals from the eigendecomposition of the relationship matrix. 
+#' @param y A vector including the phenotypes of n individuals.  
+#' @param Evector A matrix  (n x n) of eigenvectors.
+#' @param Evalue A vector of n eigenvalues.
 #' 
 #' @return A list contains variance components
 #' \describe{

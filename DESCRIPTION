@@ -9,7 +9,7 @@ Description: Genetic connectedness analysis using pedigree and genomic data.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.0.0
+RoxygenNote: 7.1.0
 Suggests: prettydoc, knitr, rmarkdown
 VignetteBuilder: knitr, rmarkdown
 Imports: Rcpp, stats

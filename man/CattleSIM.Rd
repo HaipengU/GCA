@@ -9,12 +9,12 @@ data(CattleSIM)
 }
 \description{
 The cattle dataset is simulated with QMSim software (Sargolzaei and Schenkel, 2009).   
-This dataset includes 2500 individuals across six generations (from founder to generation 5), 
+This dataset includes 2,500 individuals across six generations (from founder to generation 5), 
 each with 10,000 single nucleotide polymorphisms spread over 29 autosomes. Single phenotype with heritability of 0.6 was simulated.
-In addition, 6 fixed effects including one Cluster effect and 5 management unit simulation scenarios are simulated. 
-Fixed effect Cluster is simulated using K-medoid algorithm (Kaufman and Rousseeuw, 1990) to assign 2,500 individuals into 8 clusters. 
-MUSC1 is simulated by randomly allocate eighter clusters into two sets, which is regarded as the least connected design. From MUSC2 to 5,  
-randomly sampled individuals (i.e., 140, 210, 280 and 350)  are exchanged between the two sets in MUSC1, which aims to steadily increase 
+In addition, six fixed effects including one cluster effect and 5 management unit simulation scenarios were simulated. 
+Fixed effect of the cluster is simulated using the K-medoid algorithm (Kaufman and Rousseeuw, 1990) to assign 2,500 individuals into eight clusters. 
+MUSC1 is simulated by randomly allocating eight clusters into two sets, which is regarded as the least connected design. From MUSC2 to 5,  
+randomly sampled individuals (i.e., 140, 210, 280, and 350) were exchanged between the two sets in MUSC1 to steadily increase 
 the degree of relatedness.
 }
 \examples{

@@ -17,7 +17,7 @@ computeA(Progeny, Sire, Dam)
 A n by n numerator relationship matrix, where n refers to total number of individuals in \code{Progeny} column.
 }
 \description{
-Use sorted pedigree to calculate numerator relationship matrix, where the individual in \code{Progeny} must be ordered from old to young. 
+Use sorted pedigree to calculate a numerator relationship matrix based on a tabular method, where the individuals in \code{Progeny} must be ordered genealogically. 
  The missing \code{Sire} and \code{Dam} are coded as 0.
 }
 \examples{

@@ -5,8 +5,8 @@
 \alias{cattle.pheno}
 \title{Phenotypic information of cattle dataset}
 \description{
-A matrix with a dimension of 2500 x 6, which includes one phenotype, 
-two fixed covariates and pedigree information.
+A matrix with a dimension of 2,500 x 6, which includes one phenotype, 
+two fixed covariates, and pedigree information.
 }
 \author{
 Haipeng Yu and Gota Morota 

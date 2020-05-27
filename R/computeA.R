@@ -1,6 +1,6 @@
 #' Compute numerator relationship matrix.
 #'
-#' Use sorted pedigree to calculate numerator relationship matrix, where the individual in \code{Progeny} must be ordered from old to young. 
+#' Use sorted pedigree to calculate a numerator relationship matrix based on a tabular method, where the individuals in \code{Progeny} must be ordered genealogically. 
 #'  The missing \code{Sire} and \code{Dam} are coded as 0.
 #' 
 #' @param Progeny A numeric vector of sorted progenies.

@@ -2,16 +2,16 @@
 % Please edit documentation in R/varcomp.R
 \name{varcomp}
 \alias{varcomp}
-\title{Estimates of variance componets.}
+\title{Variance component estimation}
 \usage{
 varcomp(y, Evector, Evalue)
 }
 \arguments{
-\item{y}{A vector includes the phenotypes of n individuals.}
+\item{y}{A vector including the phenotypes of n individuals.}
 
-\item{Evector}{A matrix  (n x n) with columns according to eigenvectors from the eigendecomposition of the relationship matrix.}
+\item{Evector}{A matrix  (n x n) of eigenvectors.}
 
-\item{Evalue}{A vector which contains the eigenvalues of n individuals from the eigendecomposition of the relationship matrix.}
+\item{Evalue}{A vector of n eigenvalues.}
 }
 \value{
 A list contains variance components
@@ -22,7 +22,7 @@ A list contains variance components
 }
 \description{
 Maximum Likelihood estimation of variance components using the eigenvalues and eigenvectors, 
-  which are derived from the eigendecomposition of the relationship matrix.
+  which are derived from the eigendecomposition of a relationship matrix.
 }
 \examples{
 # Load cattle data

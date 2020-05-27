@@ -1,15 +1,15 @@
 #' Compute genomic relationship matrix
 #'
-#' Use SNP markers to derive additive genomic relationship matrix. Missing marker is allowed and should be coded as NA. 
+#' Use single nucleotide polymorphisms markers to derive an additive genomic relationship matrix. Missing markers are allowed, but should be coded as NA. 
 #' 
-#' @param snpmatrix A marker matrix with a dimension of n by m and the elements are coded as 0, 1, 2 or NA, 
-#'   where n and m indicate the total number of individuals and markers, accordingly.  
-#' @param maf A minor allele frequency for quality control. The default maf is 0.05.
-#' @param impute Imputation method for missing markers if applicable. Two methods of 'mean' and 'rbinom' are available, 
-#'   where the  'mean' imputes the missing marker using mean, and 'rbinom' imputes the missing marker by radom sampling from 
-#'   a binomial distribution. The default method is 'rbinom'. This argument will be ignored the \code{snpmatrix} does not inlcude missing markers. 
-#' @param method A type of genomic relationship matrix, which includes 'G1' and 'G2' (VanRaden 2008). The default method is 'G1'.  
-#' @return A n by n additive genomic relationship matrix. 
+#' @param snpmatrix A marker matrix with the dimension of n by m, where the elements are coded as 0, 1, 2, or NA, 
+#'   where n and m are the total number of individuals and markers, respectively.  
+#' @param maf A minor allele frequency cutoff for quality control. The default minor allele frequency is 0.05.
+#' @param impute Perform genotype imputation for missing markers if applicable. Two methods of 'mean' and 'rbinom' are available, 
+#'   where the 'mean' imputes missing markers using mean and 'rbinom' imputes the missing markers by random sampling from 
+#'   a binomial distribution. The default method is 'rbinom'. This argument will be ignored if the \code{snpmatrix} does not include any missing markers. 
+#' @param method A type of genomic relationship matrix including 'G1' and 'G2' (VanRaden 2008). The default method is 'G1'.  
+#' @return An n by n additive genomic relationship matrix. 
 #' 
 #' @import stats
 #' @author Haipeng Yu and Gota Morota 

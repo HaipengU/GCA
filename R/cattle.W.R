@@ -1,6 +1,6 @@
 #' Marker information of cattle dataset
 #'
-#' A 2500 by 10,000 matrix contains marker information.
+#' A 2,500 by 10,000 matrix contains marker information.
 #' 
 #' @docType data
 #' @name cattle.W
